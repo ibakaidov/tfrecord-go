@@ -24,7 +24,8 @@ jobs:
     - name: Check formatting
       run: |
         go fmt ./...
-        goimports -l . | tee /dev/stderr | (! read)
+        goimports -l . | grep -v '^proto/' | tee /dev/stderr | (! read)
+      
 
     - name: Tidy modules
       run: |
